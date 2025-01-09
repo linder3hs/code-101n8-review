@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Guía turística de Lima - Descubre los mejores lugares y comidas de la ciudad"
+    />
+    <title>Lima Guía Turística</title>
+    <style>
+      :root {
+        --primary-color: #2563eb;
+        --secondary-color: #1e40af;
+        --text-color: #1f2937;
+        --background-color: #f3f4f6;
+        --white: #ffffff;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: system-ui, -apple-system, sans-serif;
+        line-height: 1.5;
+        color: var(--text-color);
+        background-color: var(--background-color);
+      }
+
+      header {
+        background-color: var(--primary-color);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      nav {
+        display: flex;
+        padding: 1rem;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .logo-container {
+        display: flex;
+        align-items: center;
+      }
+
+      .logo-container img {
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        transition: transform 0.3s ease;
+      }
+
+      .logo-container img:hover {
+        transform: scale(1.1);
+      }
+
+      .nav-list {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+      }
+
+      .nav-item {
+        color: var(--white);
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+        border-radius: 0.25rem;
+        transition: background-color 0.3s ease;
+      }
+
+      .nav-item:hover,
+      .nav-item:focus {
+        background-color: var(--secondary-color);
+        outline: none;
+      }
+
+      /* Hamburger menu para móviles */
+      .menu-button {
+        display: none;
+        background: none;
+        border: none;
+        color: var(--white);
+        cursor: pointer;
+        padding: 0.5rem;
+      }
+
+      /* Media queries para responsividad */
+      @media (max-width: 768px) {
+        .menu-button {
+          display: block;
+        }
+
+        .nav-list {
+          display: none;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          background-color: var(--primary-color);
+          flex-direction: column;
+          padding: 1rem;
+          text-align: center;
+        }
+
+        .nav-list.active {
+          display: flex;
+        }
+      }
+
+      /* Mejoras de accesibilidad */
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          transition: none !important;
+        }
+      }
+
+      /* Alto contraste */
+      @media (prefers-contrast: high) {
+        :root {
+          --primary-color: #0000ff;
+          --secondary-color: #000088;
+          --text-color: #000000;
+          --background-color: #ffffff;
+        }
+      }
+
+      /* puedo llamar a la clase banner y asignarle un style */
+      .banner {
+        margin: 20px;
+        height: 80px;
+        background-color: rgb(16, 137, 242);
+        color: #fff;
+        padding: 12px;
+        text-align: center;
+        font-size: 24px;
+        border-radius: 12px;
+      }
+
+      .hero {
+        background: url(https://www.peru.travel/Contenido/Destino/Imagen/es/8/1.4/Principal/lima-banner-3.jpg);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        height: 80vh;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav role="navigation" aria-label="Navegación principal">
+        <div class="logo-container">
+          <img
+            src="https://play-lh.googleusercontent.com/Q156GhBvXdhuRsgVIavCSj1i1xmNFlJtPdcRmR3M91Inh6BeDFqqpffZwX4A7e3PGg=w240-h480-rw"
+            alt="Logo de Lima Guía Turística"
+            loading="lazy"
+          />
+        </div>
+        <button
+          class="menu-button"
+          aria-label="Abrir menú"
+          aria-expanded="false"
+          aria-controls="nav-list"
+        >
+          ☰
+        </button>
+        <ul id="nav-list" class="nav-list">
+          <li><a href="#inicio" class="nav-item">Inicio</a></li>
+          <li><a href="#comidas" class="nav-item">Comidas</a></li>
+          <li><a href="#lugares" class="nav-item">Lugares</a></li>
+        </ul>
+      </nav>
+    </header>
+    <script>
+      /* Componente 1
+      Al entrar a mi pagina web quiero que al usuario se le pregunta
+      la edad, si el usuario es menor entonces vamos a mostrar
+      un banner indicando que para visitar los lugares debe
+      estar acompañado, en caso sea mayor de edad no es necesario
+      mostrar nada
+      */
+
+      // 3 tipos
+      // string = "textos"
+      //  number = 10.4, 10, -10
+      // boolean = true, false
+
+      // existe la funcion prompt, permite que el usuario puede escribir
+      const edad = prompt("Ingrese su edad"); // string
+      // ahora vamos a convertir edad a un numero
+      const edadNumber = parseInt(edad); // number
+
+      if (edadNumber < 18) {
+        // creamos el banner
+        // document.write
+        document.write(
+          "<div class='banner'>Recuerda visitar los lugares con un adulto</div>"
+        );
+      }
+    </script>
+    <div class="hero">
+      <!-- si queremos crear una interacción y que el texto se escriba dentro del h1 -->
+      <script>
+        const nombre = prompt("Ingresa tu nombre");
+      </script>
+      <h1>
+        Bienvenido
+        <script>
+          document.write(nombre + " " + edad);
+        </script>
+        , a Lima!
+      </h1>
+    </div>
+  </body>
+</html>
