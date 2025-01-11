@@ -148,6 +148,27 @@
         background-position: center;
         background-size: cover;
         height: 80vh;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+      }
+
+      h1 {
+        text-shadow: 1px 1px 0 black,
+          /* Sombra en la parte inferior derecha */ -2px -2px 0 black,
+          /* Sombra en la parte superior izquierda */ -2px 2px 0 black,
+          /* Sombra en la parte inferior izquierda */ 2px -2px 0 black;
+      }
+
+      .btn-link {
+        background-color: rgb(16, 137, 242);
+        color: white;
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 8px;
       }
     </style>
   </head>
@@ -176,45 +197,10 @@
         </ul>
       </nav>
     </header>
-    <script>
-      /* Componente 1
-      Al entrar a mi pagina web quiero que al usuario se le pregunta
-      la edad, si el usuario es menor entonces vamos a mostrar
-      un banner indicando que para visitar los lugares debe
-      estar acompañado, en caso sea mayor de edad no es necesario
-      mostrar nada
-      */
-
-      // 3 tipos
-      // string = "textos"
-      //  number = 10.4, 10, -10
-      // boolean = true, false
-
-      // existe la funcion prompt, permite que el usuario puede escribir
-      const edad = prompt("Ingrese su edad"); // string
-      // ahora vamos a convertir edad a un numero
-      const edadNumber = parseInt(edad); // number
-
-      if (edadNumber < 18) {
-        // creamos el banner
-        // document.write
-        document.write(
-          "<div class='banner'>Recuerda visitar los lugares con un adulto</div>"
-        );
-      }
-    </script>
     <div class="hero">
       <!-- si queremos crear una interacción y que el texto se escriba dentro del h1 -->
-      <script>
-        const nombre = prompt("Ingresa tu nombre");
-      </script>
-      <h1>
-        Bienvenido
-        <script>
-          document.write(nombre + " " + edad);
-        </script>
-        , a Lima!
-      </h1>
+      <h1>Bienvenido , a Lima!</h1>
+      <a href="./interactivo.html" class="btn-link">Quiero interactuar</a>
     </div>
   </body>
 </html>
