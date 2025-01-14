@@ -1,104 +1,121 @@
+/**
+ * Genera un color hexadecimal aleatorio
+ * @returns {string} Color en formato hexadecimal (#RRGGBB)
+ */
 function generarColorHex() {
-  // Generamos un número aleatorio entre 0 y 16777215 (0xFFFFFF en hexadecimal)
+  // Convierte un número decimal (0-16777215) a hexadecimal (000000-FFFFFF)
   const numeroAleatorio = Math.floor(Math.random() * 16777216);
-  // Convertimos el número a formato hexadecimal y aseguramos que tenga 6 dígitos
+  // Asegura que el color tenga 6 dígitos agregando ceros a la izquierda si es necesario
   const colorHex = `#${numeroAleatorio.toString(16).padStart(6, "0")}`;
   return colorHex;
 }
 
-// como busco un elemento por id
+// Obtiene referencia al botón del juego 2
 const btnGame2 = document.getElementById("btnGame2");
+
+// Agrega el event listener para generar bloques cuando se haga click
 btnGame2.addEventListener("click", generarBloques);
 
+/**
+ * Función principal para generar bloques de colores
+ * Modifica el título y crea cuadrados con colores aleatorios
+ */
 function generarBloques() {
-  // Busacando elementos por id con la funcion getElementById
+  // Modifica el título de la página
   const title = document.getElementById("title");
-  // podemos modificar el texto
   title.textContent = "Hola fui modificado desde JS";
   title.style.fontFamily = "Verdana";
   title.style.color = "green";
 
-  // preguntar la cantidad de cuadrados
+  // Solicita al usuario la cantidad de cuadrados a generar
   const cantidadDeCuadrados = parseInt(
     prompt("Ingrese la cantidad de cuadrados")
   );
 
-  // definir un contador para usarlo en el while
+  // Inicializa contador para el bucle de generación
   let contador = 0;
 
-  // estamos accediendi al body para colocar los cuadrados dentro de el
+  // Obtiene referencia al body para agregar los cuadrados
   const body = document.body;
 
-  // creamos un while para ejecutar la creacion en base a la cantidad de veces
+  // Genera los cuadrados según la cantidad especificada
   while (contador < cantidadDeCuadrados) {
-    // createElement: Permite crear una etiqueta html
-    const cuadrado = document.createElement("div"); // <div></div>
+    // Crea un nuevo elemento div para el cuadrado
+    const cuadrado = document.createElement("div");
     cuadrado.textContent = contador;
-    // cuales son las propiedades de un cuadrado?
+
+    // Establece las propiedades de estilo del cuadrado
     cuadrado.style.width = "100px";
     cuadrado.style.height = "100px";
     cuadrado.style.backgroundColor = generarColorHex();
     cuadrado.style.border = "1px solid";
 
-    // appendChild: sirve para agregar un elemento a un contenedor
+    // Agrega el cuadrado al body
     body.appendChild(cuadrado);
     contador++;
   }
 }
 
-// title.style.display = "none";
-// solo busca a la primera coincidencia y obtiene el elemento
+/* COMPONENTE DE VERIFICACIÓN DE EDAD
+ * Funcionalidad comentada que verifica la edad del usuario
+ * y muestra un banner si es menor de edad
+ *
+ * Ejemplo de uso:
+ * const edad = prompt("Ingrese su edad");
+ * const edadNumber = parseInt(edad);
+ *
+ * if (edadNumber < 18) {
+ *   document.write(
+ *     "<div class='banner'>Recuerda visitar los lugares con un adulto</div>"
+ *   );
+ * }
+ */
 
-/* Componente 1
-      Al entrar a mi pagina web quiero que al usuario se le pregunta
-      la edad, si el usuario es menor entonces vamos a mostrar
-      un banner indicando que para visitar los lugares debe
-      estar acompañado, en caso sea mayor de edad no es necesario
-      mostrar nada
-      */
+/* CAMBIO DE COLOR DE FONDO
+ * Funcionalidad comentada que permite al usuario
+ * cambiar el color de fondo de la página
+ *
+ * Ejemplo de uso:
+ * const backgrounColor = prompt("Ingese un color");
+ * document.body.style.backgroundColor = backgrounColor;
+ */
 
-// 3 tipos
-// string = "textos"
-//  number = 10.4, 10, -10
-// boolean = true, false
+// Obtiene referencia al contenedor del área de juego
+const resultContainer = document.getElementById("game-area");
 
-// existe la funcion prompt, permite que el usuario puede escribir
-// const edad = prompt("Ingrese su edad"); // string
-// // ahora vamos a convertir edad a un numero
-// const edadNumber = parseInt(edad); // number
-
-// if (edadNumber < 18) {
-//   // creamos el banner
-//   // document.write
-//   document.write(
-//     "<div class='banner'>Recuerda visitar los lugares con un adulto</div>"
-//   );
-// }
-
-// const backgrounColor = prompt(
-//   "Ingese un color, este será el color de fondo de la pagina"
-// );
-// // // vamos a acceder al body
-// document.body.style.backgroundColor = backgrounColor;
-
+/**
+ * Función para registrar y mostrar una lista de hermanos
+ * Solicita la cantidad de hermanos y sus nombres
+ * Crea una lista no ordenada (ul) con los nombres
+ */
 function registrarHermanos() {
-  // Me pregunta la cantidad de hermanos
+  // Solicita la cantidad de hermanos
   const cantidadDeHermanos = parseInt(
     prompt("Ingrese la cantidad de hermanos")
   );
-  // Va a pregunta de forma dinamica el nombre de cada hermano
 
-  // arreglo de hermanos
+  // Array para almacenar los nombres de los hermanos
   const nombresDeHermanos = [];
 
-  // dentro de los parentesis va a una condicion
+  // Recopila los nombres de los hermanos
   let contador = 0;
   while (contador < cantidadDeHermanos) {
     const hermano = prompt("Ingresa el nombre del hermano " + contador);
     nombresDeHermanos.push(hermano);
-    // vital: sumarle 1 al contador
-    contador++; // +1
+    contador++;
   }
 
-  console.log(nombresDeHermanos);
+  // Limpia el contenedor antes de agregar la nueva lista
+  resultContainer.innerHTML = "";
+
+  // Crea y puebla la lista no ordenada con los nombres
+  const listaNoOrdenada = document.createElement("ul");
+  for (let nombreDeHermano of nombresDeHermanos) {
+    const listItem = document.createElement("li");
+    listItem.textContent = nombreDeHermano;
+    listaNoOrdenada.appendChild(listItem);
+  }
+
+  // Agrega la lista al contenedor
+  resultContainer.appendChild(listaNoOrdenada);
 }
